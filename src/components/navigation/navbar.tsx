@@ -12,7 +12,7 @@ color: ${props => props.theme.ColorTextWhite}!important;
 text-decoration: none;
 &:hover {
     color: ${props => props.theme.TextWhite}!important;
-    background-color: ${props => props.theme.RickMortyLightAccentTransparent};
+    background-color: ${props => props.theme.RickMortyLightShades};
 }
 `
 const CustomNavItem = styled(Nav.Item)`

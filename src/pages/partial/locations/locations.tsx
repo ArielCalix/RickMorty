@@ -52,8 +52,8 @@ export default function Locations() {
             setInfo(result["info"])
         });
     }, [active])
-    return <div>
-        <Texts.h2d>Locations</Texts.h2d>
+    return <Fragment>
+        <Texts.h2l>Locations</Texts.h2l>
         {
             !isEmpty(groupeds) && groupeds.map((group, groupIndex) => {
                 return <div key={"group-" + groupIndex} className="d-flex justify-content-center" >
@@ -76,5 +76,5 @@ export default function Locations() {
         <div className="d-flex justify-content-center mt-2">
             {isObject(info) && <PaginationBasic pages={info.pages} active={active} setActive={setActive} />}
         </div>
-    </div >
+    </Fragment>
 }

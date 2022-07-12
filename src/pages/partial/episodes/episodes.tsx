@@ -59,8 +59,8 @@ export default function Characters() {
             setInfo(result["info"])
         });
     }, [active])
-    return <div>
-        <Texts.h2d>Episodes</Texts.h2d>
+    return <Fragment>
+        <Texts.h2l>Episodes</Texts.h2l>
         {
             !isEmpty(groupeds) && groupeds.map((group, groupIndex) => {
                 return <div key={"group-" + groupIndex} className="d-flex justify-content-center" >
@@ -84,5 +84,5 @@ export default function Characters() {
         <div className="d-flex justify-content-center mt-2">
             {isObject(info) && <PaginationBasic pages={info.pages} active={active} setActive={setActive} />}
         </div>
-    </div >
+    </Fragment>
 }
