@@ -12,6 +12,6 @@ export const palette = {
     RickMortyDarkAccentTransparent: '#F2832280',
     RickMortyLightAccentTransparent: '#F2B19980',
 
-    TextWhite: '#FFF',
-    TextBlack: '#1C2140'
+    ColorTextWhite: '#FFF',
+    ColorTextBlack: '#1C2140'
 }

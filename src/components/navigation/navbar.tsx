@@ -8,7 +8,7 @@ color: ${props => props.theme.RickMortyMainBrand};
 `
 
 const CustomNavLink = styled(NavLink)`
-color: ${props => props.theme.TextWhite}!important;
+color: ${props => props.theme.ColorTextWhite}!important;
 text-decoration: none;
 &:hover {
     color: ${props => props.theme.TextWhite}!important;
@@ -24,13 +24,16 @@ background-color: ${props => props.theme.RickMortyMainBrand};
 `
 
 const CustomNavBarBrand = styled(Navbar.Brand)`
-color: ${props => props.theme.TextWhite}!important;
+color: ${props => props.theme.ColorTextWhite}!important;
 
 `
+
+const CustomNavBarCollapse = styled(Navbar.Collapse)``
 
 export const CustomNavBar = {
     NavBar: CustomNavbar,
     Brand: CustomNavBarBrand,
+    Collapse: CustomNavBarCollapse
 }
 
 export const CustomNav = {
