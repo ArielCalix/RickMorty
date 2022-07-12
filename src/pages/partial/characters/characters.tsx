@@ -4,34 +4,10 @@ import { isEmpty, isObject } from "lodash";
 import { getData } from "../../../utillities/connection/crud";
 import { IConnection } from "../../../utillities/connection/IConnection";
 import { Texts } from "../../../components/layout/text";
-import { Pagination } from "react-bootstrap";
 import { IInfo } from "interfaces/IInfo";
 import { CustomButtons } from "../../../components/shared/buttons/buttons";
+import CustomPagination from "../../../components/shared/pagination/pagination";
 import CharacterModal from "./characterModal";
-
-
-function PaginationBasic({ pages, active, setActive }) {
-    let items = [];
-    const disabledPrev = active === 1;
-    const disabledNext = active === pages;
-    let numb = (active > 2) ? active - 2 : (active > 1) ? active - 1 : active;
-    const length = (active < pages - 2) ? active + 2 : pages;
-    numb = (length < pages - 2) ? numb : (length < pages) ? numb : numb;
-    for (let number = numb; number <= length; number++) {
-        items.push(
-            <Pagination.Item key={number} active={number === active} onClick={() => setActive(number)}>
-                {number}
-            </Pagination.Item>,
-        );
-    }
-    return <Fragment>
-        <Pagination>
-            <Pagination.Prev disabled={disabledPrev} onClick={() => setActive(active - 1)} />
-            <Pagination>{items}</Pagination>
-            <Pagination.Next disabled={disabledNext} onClick={() => setActive(active + 1)} />
-        </Pagination>
-    </Fragment>
-}
 
 export default function Characters() {
     const [info, setInfo] = useState<IInfo>(undefined);
@@ -44,8 +20,12 @@ export default function Characters() {
         setShowModal(true);
     }
     useEffect(() => {
+        const filter = window.location.search;
+        console.log(filter)
         let characterData: IConnection = { url: `/character?page=${active}` }
+        characterData.url = (filter) ? `/character/?page=${active}&${filter.replace("?","")}` : characterData.url
         getData(characterData).then(result => {
+            console.log(result)
             let init = 0;
             let end = 5;
             const groups = [];
@@ -98,7 +78,7 @@ export default function Characters() {
             }
             {showModal && <CharacterModal id={id} show={showModal} setShow={setShowModal}></CharacterModal>}
             <div className="d-flex justify-content-center mt-2">
-                {isObject(info) && <PaginationBasic pages={info.pages} active={active} setActive={setActive} />}
+                {isObject(info) && <CustomPagination pages={info.pages} active={active} setActive={setActive} />}
             </div>
         </div>
     </Fragment>

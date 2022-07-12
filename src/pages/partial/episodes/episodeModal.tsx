@@ -4,6 +4,8 @@ import Modal from "react-bootstrap/esm/Modal";
 import { getData } from "../../../utillities/connection/crud";
 import { IConnection } from "../../../utillities/connection/IConnection";
 import { CustomButtons } from "../../../components/shared/buttons/buttons";
+import { CustomNav } from '../../../components/navigation/navbar';
+import { Unordered } from '../../../components/shared/list/lists';
 
 export default function EpisodeModal({ episodeData, show, setShow }) {
     console.log(episodeData)
@@ -30,13 +32,19 @@ export default function EpisodeModal({ episodeData, show, setShow }) {
                 <Modal.Title>{episodeData.name}</Modal.Title>
             </Modal.Header>
             <Modal.Body className="d-flex flex-column">
-                <ul>
+                <Unordered.ul>
                     {
                         episodeCharacters.map(char => {
-                            return <li>{char}</li>
+                            let name = char.split(" - ")[0].split(" ")[0];
+                            let status = char.split(" - ")[1].split(" ")[0];
+                            return <Unordered.li>
+                                <CustomNav.NavLinkDark className="nav-link" to={`/Characters/?name=${name}&status=${status}`}>
+                                    {char}
+                                </CustomNav.NavLinkDark>
+                            </Unordered.li>
                         })
                     }
-                </ul>
+                </Unordered.ul>
                 <CustomButtons.Cancel variant="secondary" onClick={handleClose}>
                     Close
                 </CustomButtons.Cancel>
