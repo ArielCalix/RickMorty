@@ -4,8 +4,9 @@ import { isEmpty, isObject } from "lodash";
 import { getData } from "../../../utillities/connection/crud";
 import { IConnection } from "../../../utillities/connection/IConnection";
 import { Texts } from "../../../components/layout/text";
-import { Pagination } from "react-bootstrap";
+import { Button, Pagination } from "react-bootstrap";
 import { IInfo } from "interfaces/IInfo";
+import CharacterModal from "./characterModal";
 
 
 function PaginationBasic({ pages, active, setActive }) {
@@ -15,7 +16,6 @@ function PaginationBasic({ pages, active, setActive }) {
     let numb = (active > 2) ? active - 2 : (active > 1) ? active - 1 : active;
     const length = (active < pages - 2) ? active + 2 : pages;
     numb = (length < pages - 2) ? numb : (length < pages) ? numb : numb;
-    console.log(numb, active >= pages - 5, length, active < pages - 2)
     for (let number = numb; number <= length; number++) {
         items.push(
             <Pagination.Item key={number} active={number === active} onClick={() => setActive(number)}>
@@ -36,11 +36,15 @@ export default function Characters() {
     const [info, setInfo] = useState<IInfo>(undefined);
     const [groupeds, setGroupeds] = useState([])
     const [active, setActive] = useState<number>(1)
-    console.log(active)
+    const [showModal, setShowModal] = useState<boolean>(false);
+    const [id, setId] = useState<number>(0);
+    const handleModal = (id) => {
+        setId(id)
+        setShowModal(true);
+    }
     useEffect(() => {
         let characterData: IConnection = { url: `/character?page=${active}` }
         getData(characterData).then(result => {
-            console.log(result)
             let init = 0;
             let end = 5;
             const groups = [];
@@ -69,8 +73,8 @@ export default function Characters() {
                                     <Texts.pd className="mt-1">{item.species}</Texts.pd>
                                     <Texts.pd>{item.status}</Texts.pd>
                                     <Texts.pd>{item.type !== "" ? item.type : "unknow"}</Texts.pd>
-                                    {/* <Button variant="primary">Go somewhere</Button> */}
                                 </CustomCard.Body>
+                                <Button variant="primary" onClick={() => handleModal(item.id)}>More Info</Button>
                             </CustomCard.Container>
                         })
                         }
@@ -78,6 +82,7 @@ export default function Characters() {
                 </div>
             })
         }
+        {showModal && <CharacterModal id={id} show={showModal} setShow={setShowModal}></CharacterModal>}
         <div className="d-flex justify-content-center mt-2">
             {isObject(info) && <PaginationBasic pages={info.pages} active={active} setActive={setActive} />}
         </div>
