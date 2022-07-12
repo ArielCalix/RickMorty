@@ -57,7 +57,7 @@ export default function Locations() {
         {
             !isEmpty(groupeds) && groupeds.map((group, groupIndex) => {
                 return <div key={"group-" + groupIndex} className="d-flex justify-content-center" >
-                    <div className="d-flex flex-sm-column flex-lg-row align-items-center">
+                    <div className="d-flex flex-lg-row flex-sm-column flex-md-column align-items-center">
                         {group.map((item, episodeIndex) => {
                             return <CustomCard.Container key={"episode-" + episodeIndex} className="m-1">
                                 <CustomCard.Body>

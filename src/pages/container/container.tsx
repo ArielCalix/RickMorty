@@ -7,13 +7,10 @@ import ContainerDiv from "../../components/container/ContainerDiv"
 export default function Container() {
     return <ContainerDiv>
         <Routes>
-            <Route path="/" element={<Episodes />}>
-                <Route
-                    path="episodes"
-                    element={<Episodes />}
-                />
+            <Route path="/" element={<Characters />}>
+                <Route path="characters" element={<Characters />} />
             </Route>
-            <Route path="characters" element={<Characters />} />
+            <Route path="episodes" element={<Episodes />} />
             <Route path="locations" element={<Locations />} />
         </Routes>
     </ContainerDiv>

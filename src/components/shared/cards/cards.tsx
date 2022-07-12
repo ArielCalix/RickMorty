@@ -9,7 +9,7 @@ width: 16.8rem;
 const CardImg = styled(Card.Img)``
 
 const CardBody = styled(Card.Body)`
-height: 13rem;
+height: 12rem;
 `
 
 const CardTitle = styled(Card.Title)`
