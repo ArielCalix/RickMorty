@@ -6,7 +6,7 @@ width: 16.0rem;
 `
 
 const CardImg = styled(Card.Img)`
-width: 15rem;
+width: 16rem;
 `
 
 const CardBody = styled(Card.Body)`

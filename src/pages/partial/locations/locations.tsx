@@ -1,4 +1,4 @@
-import React, { useEffect, useState, Fragment } from "react";
+import { useEffect, useState, Fragment } from "react";
 import { CustomCard } from "../../../components/shared/cards/cards";
 import { isEmpty, isObject } from "lodash";
 import { getData } from "../../../utillities/connection/crud";

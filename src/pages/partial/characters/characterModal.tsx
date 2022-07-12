@@ -1,11 +1,12 @@
 import { CustomModal } from "../../../components/shared/modal/modal";
 import { Texts } from "../../../components/layout/text";
 import { isEmpty } from "lodash";
-import React, { useEffect, useState, Fragment } from "react";
-import { Accordion, Button } from "react-bootstrap";
+import { useEffect, useState, Fragment } from "react";
+import { Accordion } from "react-bootstrap";
 import Modal from "react-bootstrap/esm/Modal";
 import { getData } from "../../../utillities/connection/crud";
 import { IConnection } from "../../../utillities/connection/IConnection";
+import { CustomButtons } from "../../../components/shared/buttons/buttons";
 
 export default function CharacterModal({ id, show, setShow }) {
     const [info, setInfo] = useState({});
@@ -82,9 +83,9 @@ export default function CharacterModal({ id, show, setShow }) {
                 </CustomModal.BodyContainer>
             </Modal.Body>
             <Modal.Footer>
-                <Button variant="secondary" onClick={handleClose}>
+                <CustomButtons.Cancel variant="secondary" onClick={handleClose}>
                     Close
-                </Button>
+                </CustomButtons.Cancel>
             </Modal.Footer>
         </Fragment>
         }

@@ -1,11 +1,12 @@
-import React, { useEffect, useState, Fragment } from "react";
+import { useEffect, useState, Fragment } from "react";
 import { CustomCard } from "../../../components/shared/cards/cards";
 import { isEmpty, isObject } from "lodash";
 import { getData } from "../../../utillities/connection/crud";
 import { IConnection } from "../../../utillities/connection/IConnection";
 import { Texts } from "../../../components/layout/text";
-import { Button, Pagination } from "react-bootstrap";
+import { Pagination } from "react-bootstrap";
 import { IInfo } from "interfaces/IInfo";
+import { CustomButtons } from "../../../components/shared/buttons/buttons";
 import CharacterModal from "./characterModal";
 
 
@@ -86,7 +87,7 @@ export default function Characters() {
                                         </div>
                                     </CustomCard.Body>
                                 </div>
-                                <Button variant="primary" onClick={() => handleModal(item.id)}>More Info</Button>
+                                <CustomButtons.Default variant="primary" onClick={() => handleModal(item.id)}>More Info</CustomButtons.Default>
                             </CustomCard.Container>
                         })
                         }

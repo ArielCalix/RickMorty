@@ -1,12 +1,13 @@
-import React, { useEffect, useState, Fragment } from "react";
+import { useEffect, useState, Fragment } from "react";
 import { CustomCard } from "../../../components/shared/cards/cards";
+import { CustomButtons } from "../../../components/shared/buttons/buttons";
 import { isEmpty, isObject } from "lodash";
 import { getData } from "../../../utillities/connection/crud";
 import { IConnection } from "../../../utillities/connection/IConnection";
 import { Texts } from "../../../components/layout/text";
 import { Pagination } from "react-bootstrap";
 import { IInfo } from "interfaces/IInfo";
-
+import EpisodeModal from "./episodeModal";
 
 function PaginationBasic({ pages, active, setActive }) {
     let items = [];
@@ -35,9 +36,15 @@ export default function Characters() {
     const [info, setInfo] = useState<IInfo>(undefined);
     const [groupeds, setGroupeds] = useState([])
     const [active, setActive] = useState<number>(1)
+    const [showModal, setShowModal] = useState<boolean>(false);
+    const [episodeCharacters, setEpisodeCharacters] = useState({});
+    const handleModal = (episodeName, episodeChars) => {
+        setEpisodeCharacters({ name: episodeName, characters: episodeChars })
+        setShowModal(true);
+    }
     useEffect(() => {
-        let characterData: IConnection = { url: `/episode?page=${active}` }
-        getData(characterData).then(result => {
+        let episodeData: IConnection = { url: `/episode?page=${active}` }
+        getData(episodeData).then(result => {
             let init = 0;
             let end = 5;
             const groups = [];
@@ -64,8 +71,8 @@ export default function Characters() {
                                     <CustomCard.Title>{item.name}</CustomCard.Title>
                                     <Texts.pd className="mt-1">{item.air_date}</Texts.pd>
                                     <Texts.pd>{item.episode}</Texts.pd>
-                                    {/* <Button variant="primary">Go somewhere</Button> */}
                                 </CustomCard.Body>
+                                <CustomButtons.Default variant="primary" onClick={() => handleModal(item.name, item.characters)}>View Characters</CustomButtons.Default>
                             </CustomCard.Container>
                         })
                         }
@@ -73,6 +80,7 @@ export default function Characters() {
                 </div>
             })
         }
+        {showModal && <EpisodeModal episodeData={episodeCharacters} show={showModal} setShow={setShowModal}></EpisodeModal>}
         <div className="d-flex justify-content-center mt-2">
             {isObject(info) && <PaginationBasic pages={info.pages} active={active} setActive={setActive} />}
         </div>
