@@ -5,7 +5,8 @@
   "scripts": {
     "dev": "vite --host",
     "build": "tsc && vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "publish": "ntl deploy --prod"
   },
   "dependencies": {
     "@types/lodash": "^4.14.182",
