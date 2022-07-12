@@ -59,7 +59,7 @@ export default function Characters() {
             setInfo(result["info"])
         });
     }, [active])
-    return <div>
+    return <div className="mx-3">
         <Texts.h2d>Characters</Texts.h2d>
         {
             !isEmpty(groupeds) && groupeds.map((group, groupIndex) => {
@@ -67,13 +67,25 @@ export default function Characters() {
                     <div className="d-flex flex-sm-column flex-lg-row align-items-center">
                         {group.map((item, characterIndex) => {
                             return <CustomCard.Container key={"character-" + characterIndex} className="m-1">
-                                <CustomCard.Img variant="top" src={item.image} />
-                                <CustomCard.Body>
-                                    <CustomCard.Title>{item.name}</CustomCard.Title>
-                                    <Texts.pd className="mt-1">{item.species}</Texts.pd>
-                                    <Texts.pd>{item.status}</Texts.pd>
-                                    <Texts.pd>{item.type !== "" ? item.type : "unknow"}</Texts.pd>
-                                </CustomCard.Body>
+                                <div className="align-items-center">
+                                    <CustomCard.Img variant="top" src={item.image} />
+                                    <CustomCard.Body>
+                                        <CustomCard.Title>
+                                            <span><strong>{item.name}</strong></span>
+                                        </CustomCard.Title>
+                                        <div className="d-flex flex-column align-items-start mx-1">
+                                            <Texts.pd className="mt-1">
+                                                <span><strong>Species: </strong></span>{item.species}
+                                            </Texts.pd>
+                                            <Texts.pd>
+                                                <span><strong>Status: </strong></span>{item.status}
+                                            </Texts.pd>
+                                            <Texts.pd>
+                                                <span><strong>Type: </strong></span>{item.type !== "" ? item.type : "unknow"}
+                                            </Texts.pd>
+                                        </div>
+                                    </CustomCard.Body>
+                                </div>
                                 <Button variant="primary" onClick={() => handleModal(item.id)}>More Info</Button>
                             </CustomCard.Container>
                         })

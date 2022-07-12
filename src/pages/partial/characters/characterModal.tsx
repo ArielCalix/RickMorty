@@ -41,19 +41,33 @@ export default function CharacterModal({ id, show, setShow }) {
                         <Texts.pd className="mt-1">
                             <span>
                                 <strong>Especie: </strong>
-                            </span>{info["species"]}</Texts.pd>
-                        <Texts.pd><span>
-                            <strong>Status: </strong>
-                        </span>{info["status"]}</Texts.pd>
-                        <Texts.pd><span>
-                            <strong>Gender: </strong>
-                        </span>{info["gender"]}</Texts.pd>
-                        <Texts.pd><span>
-                            <strong>Origin: </strong>
-                        </span>{info["origin"].name}</Texts.pd>
-                        <Texts.pd><span>
-                            <strong>Type: </strong>
-                        </span>{info["type"] !== "" ? info["type"] : "unknow"}</Texts.pd>
+                            </span>
+                            {info["species"]}
+                        </Texts.pd>
+                        <Texts.pd>
+                            <span>
+                                <strong>Status: </strong>
+                            </span>
+                            {info["status"]}
+                        </Texts.pd>
+                        <Texts.pd>
+                            <span>
+                                <strong>Gender: </strong>
+                            </span>
+                            {info["gender"]}
+                        </Texts.pd>
+                        <Texts.pd>
+                            <span>
+                                <strong>Origin: </strong>
+                            </span>
+                            {info["origin"].name}
+                        </Texts.pd>
+                        <Texts.pd>
+                            <span>
+                                <strong>Type: </strong>
+                            </span>
+                            {info["type"] !== "" ? info["type"] : "unknow"}
+                        </Texts.pd>
                     </CustomModal.BodyContainer>
                 </CustomModal.BodyContainer>
                 <CustomModal.BodyContainer className="mx-2">

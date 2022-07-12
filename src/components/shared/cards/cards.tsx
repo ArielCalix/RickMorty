@@ -2,14 +2,15 @@ import { Card } from "react-bootstrap";
 import styled from "styled-components";
 
 const CustomContainer = styled(Card)`
-width: 16.8rem;
+width: 16.0rem;
 `
 
-
-const CardImg = styled(Card.Img)``
+const CardImg = styled(Card.Img)`
+width: 15rem;
+`
 
 const CardBody = styled(Card.Body)`
-height: 12rem;
+height: 13rem;
 `
 
 const CardTitle = styled(Card.Title)`
