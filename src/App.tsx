@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, Fragment } from 'react'
 import logo from './logo.svg'
 import './App.css'
 import Header from './pages/partial/header/header'
@@ -13,12 +13,13 @@ const menu = [
 
 function App() {
   const [count, setCount] = useState(0)
-  return (
+  return (<Fragment>
     <div className="App">
       <Header Menu={menu}></Header>
       <Container></Container>
       <Footer Text={"This is not an official Rick and Morty Wiki"}></Footer>
     </div>
+  </Fragment>
   )
 }
 

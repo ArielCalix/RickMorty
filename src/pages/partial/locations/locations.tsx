@@ -34,7 +34,7 @@ export default function Locations() {
         });
     }, [active])
     return <Fragment>
-        <Texts.h2l>Locations</Texts.h2l>
+        <Texts.h2l className="my-4">Locations</Texts.h2l>
         {
             !isEmpty(groupeds) && groupeds.map((group, groupIndex) => {
                 return <div key={"group-" + groupIndex} className="d-flex justify-content-center" >

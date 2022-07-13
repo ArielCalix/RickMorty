@@ -14,24 +14,29 @@ export default function Location() {
     const [showModal, setShowModal] = useState<boolean>(false);
     const [id, setId] = useState<number>(0);
     const handleModal = (id) => {
-        setId(id)
+        setId(id);
         setShowModal(true);
     }
     const getResidents = (locationResidents) => {
         const residents = locationResidents.map(resident => {
             return resident.replace("https://rickandmortyapi.com/api/character/", "");
         })
-        let characterData: IConnection = { url: `/character/${residents.join(',')}` }
+        const residentsId = (residents.length > 1) ? residents.join(',') : residents[0]
+        let characterData: IConnection = { url: `/character/${residentsId}` }
         getData(characterData).then(result => {
             let init = 0;
             let end = 5;
             const groups = [];
-            const qtyGroups = result.length / 5;
-            for (let a = 0; a < qtyGroups; a++) {
-                const spliced = result.slice(init, end)
-                groups.push(spliced);
-                init = end;
-                end = end + 5;
+            if (result.length > 1) {
+                const qtyGroups = result.length / 5;
+                for (let a = 0; a < qtyGroups; a++) {
+                    const spliced = result.slice(init, end)
+                    groups.push(spliced);
+                    init = end;
+                    end = end + 5;
+                }
+            } else {
+                groups.push([result])
             }
             setGroupeds(groups);
         });
@@ -39,12 +44,7 @@ export default function Location() {
     useEffect(() => {
         const filter = window.location.search;
         let locationData: IConnection = { url: `/location/${filter.split("=")[1]}` }
-        console.log(locationData)
         getData(locationData).then(result => {
-            let init = 0;
-            let end = 5;
-            const groups = [];
-            console.log(result)
             if (result)
                 getResidents(result["residents"])
             setLocationInfo(result)
@@ -52,7 +52,7 @@ export default function Location() {
     }, [active])
     return <div>
         {locationInfo && <div className="d-flex flex-column align-items-center mx-5">
-            <h1 className="text-light">{locationInfo["name"]}</h1>
+            <h1 className="text-light my-4">{locationInfo["name"]}</h1>
             <div className="d-flex col-12 flex-column align-items-start">
                 <h3 className="text-light"><span><strong>type: </strong></span> {`${locationInfo["type"]}`}</h3>
                 <h3 className="text-light"><span><strong>dimension: </strong></span>{`${locationInfo["dimension"]}`}</h3>

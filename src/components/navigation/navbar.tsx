@@ -27,15 +27,18 @@ const CustomNavItem = styled(Nav.Item)`
 `
 
 const CustomNavbar = styled(Navbar)`
-background-color: ${props => props.theme.RickMortyMainBrand}!important;
+height: 11vh;
+background-color: ${props => props.theme.RickMortyDarkShades}!important;
 
 `
-
 const CustomNavBarBrand = styled(Navbar.Brand)`
 color: ${props => props.theme.ColorTextWhite}!important;
 
 `
+const CustomNavBarBrandImage = styled.img`
+width: 10rem;
 
+`
 const CustomNavBarToggle = styled(Navbar.Toggle)`
 color: ${props => props.theme.ColorTextWhite}!important;
 `
@@ -48,7 +51,8 @@ export const CustomNavBar = {
     NavBar: CustomNavbar,
     Brand: CustomNavBarBrand,
     Collapse: CustomNavBarCollapse,
-    Toggle: CustomNavBarToggle
+    Toggle: CustomNavBarToggle,
+    Img: CustomNavBarBrandImage
 }
 
 export const CustomNav = {

@@ -37,7 +37,7 @@ export default function Characters() {
         });
     }, [active])
     return <Fragment>
-        <Texts.h2l>Episodes</Texts.h2l>
+        <Texts.h2l className="my-4">Episodes</Texts.h2l>
         {
             !isEmpty(groupeds) && groupeds.map((group, groupIndex) => {
                 return <div key={"group-" + groupIndex} className="d-flex justify-content-center" >

@@ -39,7 +39,7 @@ export default function Characters() {
         });
     }, [active])
     return <Fragment>
-        <Texts.h2l>Characters</Texts.h2l>
+        <Texts.h2l className="my-4">Characters</Texts.h2l>
         <div className="mx-3">
             {
                 !isEmpty(groupeds) && groupeds.map((group, groupIndex) => {
