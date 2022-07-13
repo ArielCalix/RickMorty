@@ -8,6 +8,7 @@ import { IInfo } from "interfaces/IInfo";
 import { CustomButtons } from "../../../components/shared/buttons/buttons";
 import CustomPagination from "../../../components/shared/pagination/pagination";
 import CharacterModal from "./characterModal";
+import { Spinner } from "react-bootstrap"
 
 export default function Characters() {
     const [info, setInfo] = useState<IInfo>(undefined);
@@ -42,7 +43,7 @@ export default function Characters() {
         <Texts.h2l className="my-4">Characters</Texts.h2l>
         <div className="mx-3">
             {
-                !isEmpty(groupeds) && groupeds.map((group, groupIndex) => {
+                !isEmpty(groupeds) ? groupeds.map((group, groupIndex) => {
                     return <div key={"group-" + groupIndex} className="d-flex flex-row justify-content-center">
                         <div className="d-flex flex-sm-column flex-lg-row align-items-center">
                             {group.map((item, characterIndex) => {
@@ -72,7 +73,7 @@ export default function Characters() {
                             }
                         </div>
                     </div>
-                })
+                }) : <Spinner variant="light" animation="grow" />
             }
             {showModal && <CharacterModal id={id} show={showModal} setShow={setShowModal}></CharacterModal>}
             <div className="d-flex justify-content-center mt-2">

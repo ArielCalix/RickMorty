@@ -8,6 +8,7 @@ import { Texts } from "../../../components/layout/text";
 import CustomPagination from "../../../components/shared/pagination/pagination";
 import { IInfo } from "interfaces/IInfo";
 import EpisodeModal from "./episodeModal";
+import { Spinner } from "react-bootstrap"
 
 export default function Characters() {
     const [info, setInfo] = useState<IInfo>(undefined);
@@ -39,7 +40,7 @@ export default function Characters() {
     return <Fragment>
         <Texts.h2l className="my-4">Episodes</Texts.h2l>
         {
-            !isEmpty(groupeds) && groupeds.map((group, groupIndex) => {
+            !isEmpty(groupeds) ? groupeds.map((group, groupIndex) => {
                 return <div key={"group-" + groupIndex} className="d-flex justify-content-center" >
                     <div className="d-flex flex-sm-column flex-lg-row align-items-center">
                         {group.map((item, episodeIndex) => {
@@ -55,7 +56,7 @@ export default function Characters() {
                         }
                     </div>
                 </div>
-            })
+            }) : <Spinner variant="light" animation="grow" />
         }
         {showModal && <EpisodeModal
             episodeData={episodeCharacters}

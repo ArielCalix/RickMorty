@@ -7,6 +7,7 @@ import { Texts } from "../../../components/layout/text";
 import CustomPagination from "../../../components/shared/pagination/pagination";
 import { IInfo } from "interfaces/IInfo";
 import { CustomButtons } from "../../../components/shared/buttons/buttons";
+import { Spinner } from "react-bootstrap"
 
 export default function Locations() {
     const [info, setInfo] = useState<IInfo>(undefined);
@@ -36,7 +37,7 @@ export default function Locations() {
     return <Fragment>
         <Texts.h2l className="my-4">Locations</Texts.h2l>
         {
-            !isEmpty(groupeds) && groupeds.map((group, groupIndex) => {
+            !isEmpty(groupeds) ? groupeds.map((group, groupIndex) => {
                 return <div key={"group-" + groupIndex} className="d-flex justify-content-center" >
                     <div className="d-flex flex-lg-row flex-sm-column flex-md-column align-items-center">
                         {group.map((item, episodeIndex) => {
@@ -54,7 +55,7 @@ export default function Locations() {
                         }
                     </div>
                 </div>
-            })
+            }) : <Spinner variant="light" animation="grow" />
         }
         <div className="d-flex justify-content-center mt-2">
             {isObject(info) && <CustomPagination pages={info.pages} active={active} setActive={setActive} />}

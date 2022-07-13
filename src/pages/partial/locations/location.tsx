@@ -6,6 +6,7 @@ import { CustomButtons } from "../../../components/shared/buttons/buttons";
 import { Texts } from "../../../components/layout/text";
 import { CustomCard } from "../../../components/shared/cards/cards";
 import CharacterModal from "../characters/characterModal";
+import { Spinner } from "react-bootstrap"
 
 export default function Location() {
     const [groupeds, setGroupeds] = useState([])
@@ -59,7 +60,7 @@ export default function Location() {
             </div>
         </div>
         }
-        {!isEmpty(groupeds) && !isEmpty(groupeds) && groupeds.map((group, groupIndex) => {
+        {!isEmpty(groupeds) ? !isEmpty(groupeds) && groupeds.map((group, groupIndex) => {
             return <div key={"group-" + groupIndex} className="d-flex flex-row justify-content-center">
                 <div className="d-flex flex-sm-column flex-lg-row align-items-center">
                     {group.map((item, characterIndex) => {
@@ -85,11 +86,11 @@ export default function Location() {
                             </div>
                             <CustomButtons.Default variant="primary" onClick={() => handleModal(item.id)}>More Info</CustomButtons.Default>
                         </CustomCard.Container>
-                    })
+                    }) 
                     }
                 </div>
             </div>
-        })
+        }) : <Spinner variant="light" animation="grow" />
         }
         {showModal && <CharacterModal id={id} show={showModal} setShow={setShowModal}></CharacterModal>}
     </div>

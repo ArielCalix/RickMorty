@@ -15,11 +15,58 @@
     background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url("https://res.cloudinary.com/psicocloud/image/upload/v1657691484/RickMorty/55945_rick_and_morty-1_mpn3nh.webp");
     background-size: cover;
   }
+
+  #myBtn {
+    display: none;
+    width: 3rem;
+    height: 3rem;
+    position: fixed;
+    bottom: 20px;
+    right: 30px;
+    z-index: 99;
+    font-size: 1rem;
+    border: none;
+    outline: none;
+    background-color: #04ADBF;
+    color: white;
+    cursor: pointer;
+    padding: 1rem;
+    border-radius: 4px;
+    transition: 0.3s;
+    opacity: 0.6;
+  }
+
+  #myBtn:hover {
+    opacity: 1;
+  }
 </style>
 
 <body>
   <div id="root"></div>
+  <button onclick="topFunction()" id="myBtn" title="Go to top"><i class="fa-solid fa-angle-up"></i></button>
   <script type="module" src="/src/main.tsx"></script>
+  <script src="https://kit.fontawesome.com/9ebdd7cd93.js" crossorigin="anonymous"></script>
+  <script>
+    //Get the button
+    var mybutton = document.getElementById("myBtn");
+
+    // When the user scrolls down 20px from the top of the document, show the button
+    window.onscroll = function () { scrollFunction() };
+
+    function scrollFunction() {
+      if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+        mybutton.style.display = "block";
+      } else {
+        mybutton.style.display = "none";
+      }
+    }
+
+    // When the user clicks on the button, scroll to the top of the document
+    function topFunction() {
+      document.body.scrollTop = 0;
+      document.documentElement.scrollTop = 0;
+    }
+  </script>
 </body>
 
 </html>
