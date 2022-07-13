@@ -54,8 +54,8 @@ export default function Location() {
         {locationInfo && <div className="d-flex flex-column align-items-center mx-5">
             <h1 className="text-light my-4">{locationInfo["name"]}</h1>
             <div className="d-flex col-12 flex-column align-items-start">
-                <h3 className="text-light"><span><strong>type: </strong></span> {`${locationInfo["type"]}`}</h3>
-                <h3 className="text-light"><span><strong>dimension: </strong></span>{`${locationInfo["dimension"]}`}</h3>
+                <h3 className="text-light"><span><strong>Type: </strong></span> {`${locationInfo["type"]}`}</h3>
+                <h3 className="text-light"><span><strong>Dimension: </strong></span>{`${locationInfo["dimension"]}`}</h3>
             </div>
         </div>
         }
