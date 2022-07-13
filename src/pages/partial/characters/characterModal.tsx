@@ -2,7 +2,7 @@ import { CustomModal } from "../../../components/shared/modal/modal";
 import { Texts } from "../../../components/layout/text";
 import { isEmpty } from "lodash";
 import { useEffect, useState, Fragment } from "react";
-import { Tab, Tabs } from "react-bootstrap";
+import { Carousel, Tab, Tabs } from "react-bootstrap";
 import Modal from "react-bootstrap/esm/Modal";
 import { getData } from "../../../utillities/connection/crud";
 import { IConnection } from "../../../utillities/connection/IConnection";
@@ -20,7 +20,18 @@ export default function CharacterModal({ id, show, setShow }) {
                 let episodeNumber = ep.split("/")[5];
                 return `${episode.charAt(0).toUpperCase() + episode.slice(1)} ${episodeNumber}`
             })
-            setEpisodes(episodesList);
+            let init = 0;
+            let end = 10;
+            const groups = [];
+            const qtyGroups = episodesList.length / 10;
+            for (let a = 0; a < qtyGroups; a++) {
+                const spliced = episodesList.slice(init, end)
+                groups.push(spliced);
+                init = end;
+                end = end + 10;
+            }
+            console.log(groups)
+            setEpisodes(groups);
             setInfo(result)
         });
     }, []);
@@ -81,7 +92,22 @@ export default function CharacterModal({ id, show, setShow }) {
                     </Tab>
                     <Tab eventKey="epsodes" title="Episodes">
                         <CustomModal.BodyContainer className="mx-2">
-                            <Texts.pd>{episodes.join(", ")}</Texts.pd>
+                            <Carousel variant="dark" indicators={false} controls={(episodes.length > 1)}>
+                                {!isEmpty(episodes) &&
+                                    episodes.map(group => {
+                                        console.log(group)
+                                        return <Carousel.Item>
+                                            <ul className="d-flex flex-column align-items-center">
+                                                {
+                                                    group.map(episode => {
+                                                        return <li>{episode}</li>
+                                                    })
+                                                }
+                                            </ul>
+                                        </Carousel.Item>
+                                    })
+                                }
+                            </Carousel>
                         </CustomModal.BodyContainer>
                     </Tab>
                 </Tabs>

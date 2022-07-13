@@ -46,8 +46,8 @@ export default function Characters() {
                             return <CustomCard.Container key={"episode-" + episodeIndex} className="m-1">
                                 <CustomCard.Body>
                                     <CustomCard.Title>{item.name}</CustomCard.Title>
-                                    <Texts.pd className="mt-1">{item.air_date}</Texts.pd>
-                                    <Texts.pd>{item.episode}</Texts.pd>
+                                    <Texts.pd className="mt-1"><span><strong>Emision: </strong></span>{item.air_date}</Texts.pd>
+                                    <Texts.pd><span><strong>Episode: </strong></span>{item.episode}</Texts.pd>
                                 </CustomCard.Body>
                                 <CustomButtons.Default variant="primary" onClick={() => handleModal(item.name, item.characters)}>View Characters</CustomButtons.Default>
                             </CustomCard.Container>
