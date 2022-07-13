@@ -8,7 +8,6 @@ import { CustomNav } from '../../../components/navigation/navbar';
 import { Unordered } from '../../../components/shared/list/lists';
 
 export default function EpisodeModal({ episodeData, show, setShow }) {
-    console.log(episodeData)
     const [episodeCharacters, setEpisodesCharacters] = useState([]);
     useEffect(() => {
         const characters = episodeData.characters.map(res => {
@@ -19,7 +18,6 @@ export default function EpisodeModal({ episodeData, show, setShow }) {
             const chars = response.map(item => {
                 return `${item.name} - ${item.status}`
             })
-            console.log(chars)
             setEpisodesCharacters(chars)
         })
     }, []);
@@ -34,10 +32,10 @@ export default function EpisodeModal({ episodeData, show, setShow }) {
             <Modal.Body className="d-flex flex-column">
                 <Unordered.ul>
                     {
-                        episodeCharacters.map(char => {
+                        episodeCharacters.map((char, index) => {
                             let name = char.split(" - ")[0].split(" ")[0];
                             let status = char.split(" - ")[1].split(" ")[0];
-                            return <Unordered.li>
+                            return <Unordered.li key={char + index}>
                                 <CustomNav.NavLinkDark className="nav-link" to={`/Characters/?name=${name}&status=${status}`}>
                                     {char}
                                 </CustomNav.NavLinkDark>

@@ -21,11 +21,9 @@ export default function Characters() {
     }
     useEffect(() => {
         const filter = window.location.search;
-        console.log(filter)
         let characterData: IConnection = { url: `/character?page=${active}` }
         characterData.url = (filter) ? `/character/?page=${active}&${filter.replace("?","")}` : characterData.url
         getData(characterData).then(result => {
-            console.log(result)
             let init = 0;
             let end = 5;
             const groups = [];

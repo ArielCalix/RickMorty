@@ -12,13 +12,12 @@ export default function CharacterModal({ id, show, setShow }) {
     const [info, setInfo] = useState({});
     const [episodes, setEpisodes] = useState([]);
     useEffect(() => {
-        console.log(id)
         let characterData: IConnection = { url: `/character/${id}` }
         getData(characterData).then(result => {
-            console.log(result)
             const episodesList = result["episode"].map(ep => {
-                const splitted = ep.split("/");
-                return `${splitted[4]}-${splitted[5]}`
+                let episode = ep.split("/")[4];
+                let episodeNumber = ep.split("/")[5];
+                return `${episode.charAt(0).toUpperCase() + episode.slice(1)} ${episodeNumber}`
             })
             setEpisodes(episodesList);
             setInfo(result)

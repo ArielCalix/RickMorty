@@ -6,11 +6,16 @@ import { IConnection } from "../../../utillities/connection/IConnection";
 import { Texts } from "../../../components/layout/text";
 import CustomPagination from "../../../components/shared/pagination/pagination";
 import { IInfo } from "interfaces/IInfo";
+import { CustomButtons } from "../../../components/shared/buttons/buttons";
 
 export default function Locations() {
     const [info, setInfo] = useState<IInfo>(undefined);
-    const [groupeds, setGroupeds] = useState([])
-    const [active, setActive] = useState<number>(1)
+    const [groupeds, setGroupeds] = useState([]);
+    const [active, setActive] = useState<number>(1);
+    const handleModal = (episodeName, episodeChars) => {
+        // setEpisodeCharacters({ name: episodeName, characters: episodeChars })
+        // setShowModal(true);
+    }
     useEffect(() => {
         let characterData: IConnection = { url: `/location?page=${active}` }
         getData(characterData).then(result => {
@@ -38,10 +43,12 @@ export default function Locations() {
                             return <CustomCard.Container key={"episode-" + episodeIndex} className="m-1">
                                 <CustomCard.Body>
                                     <CustomCard.Title>{item.name}</CustomCard.Title>
-                                    <Texts.pd className="mt-1">{item.dimension}</Texts.pd>
-                                    <Texts.pd>{item.type !== "" ? item.type : ""}</Texts.pd>
-                                    {/* <Button variant="primary">Go somewhere</Button> */}
+                                    <Texts.pd className="mt-1"><span><strong>Dimension: </strong></span>{item.dimension}</Texts.pd>
+                                    <Texts.pd><span><strong>Type: </strong></span>{item.type !== "" ? item.type : ""}</Texts.pd>
                                 </CustomCard.Body>
+                                <CustomButtons.Link className="btn" to={`/Location/?id=${item.id}`}>
+                                    view Residents
+                                </CustomButtons.Link>
                             </CustomCard.Container>
                         })
                         }
